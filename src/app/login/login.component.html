@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="text-center">
+            <h1>Login</h1>
+            <h6>please enter email & password</h6>
+          </div>
+          <form>
+            <form [formGroup]="loginForm">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Login ID</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" formControlName="loginId"
+                  aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1">
+              </div>
+              <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+            </form>
+          </form>
+          <a style="color: #fff; margin-top: 10px;" routerLink="/signup">new user? click the signup!!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+ 

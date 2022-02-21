@@ -1,0 +1,148 @@
+<div class="container-fulid">
+    <div class="col-12">
+        <app-navigation></app-navigation>
+    </div><br><br>
+    <div class="container">
+        <h2>Add Product</h2>
+        <br><br>
+        <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+            <div class="row">
+                <!-- <div class="col-3">
+                    <input class="form-control form-control-lg" placeholder="Code" name="productCode" #productCode="ngModel"
+                        [(ngModel)]="service.formData.productCode" required
+                        [class.invalid]="productCode.invalid && productCode.touched">
+                </div> -->
+                <div class=" col-3">
+                    <input class="form-control form-control-lg" placeholder="Product Description" name=" description"
+                        #description="ngModel" [(ngModel)]="service.formData.description" required
+                        [class.invalid]=" description.invalid &&  description.touched">
+                </div>
+                <div class="col-3">
+                    <input class="form-control form-control-lg" placeholder="Unit Price" name="unitPrice"
+                        #unitPrice="ngModel" [(ngModel)]="service.formData.unitPrice" required
+                        [class.invalid]=" unitPrice.invalid &&  unitPrice.touched">
+                </div>
+                <div class="col-3">
+                    <input class="form-control form-control-lg" placeholder="AnyRemarks" name="remarks"
+                        #remarks="ngModel" [(ngModel)]="service.formData.remarks" required
+                        [class.invalid]="remarks.invalid && remarks.touched">
+                </div>
+
+                <div class="col-3" align="center">
+                    <button class="btn btn-info btn-lg btn-block" type="submit">SAVE</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="col-12" style="margin-top: 50px; padding-bottom: 50px;">
+            <table class="table table-bordeed">
+                <thead>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Description</th>
+                        <th>Unit Price</th>
+                        <th>Remarks</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let prod of  search">
+                        <td> {{prod.productCode}}</td>
+                        <td>{{prod.description}}</td>
+                        <td>{{prod.unitPrice}}</td>
+                        <td>{{prod.remarks}}</td>
+
+                        <td><a class="btn btn-success btn-block" value="edit" (click)="edit(prod)"
+                                data-bs-toggle="modal" data-bs-target="#myModal1">Edit</a>
+                            <button class="btn btn-danger mx-3" data-bs-toggle="modal"
+                                data-bs-target="#myModal">Delete</button>
+                        </td>
+                        <!-- Modal -->
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Confirm Product deletion? </h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                            (click)="deletFun(prod.productCode)">Yes</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<div class="modal" id="myModal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Update Product</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" *ngIf="singleProduct">
+                <form novalidate #form="ngForm" (submit)="onUpdate(form)">
+                    <div class="row">
+                        <div class="col-12" style="margin-top: 20px;">
+                            <label>Prduct Code</label>
+                            <input class="form-control form-control-lg" placeholder="Code" name="productCode" disabled
+                                #productCode="ngModel" [(ngModel)]="service.formData.productCode" required
+                                [class.invalid]="productCode.invalid && productCode.touched">
+                        </div>
+                        <div class=" col-12" style="margin-top: 20px;">
+                            <label>description</label>
+
+                            <input class="form-control form-control-lg" placeholder="Product Description"
+                                name=" description" #description="ngModel" [(ngModel)]="service.formData.description"
+                                required [class.invalid]=" description.invalid &&  description.touched">
+                        </div>
+                        <div class="col-12" style="margin-top: 20px;">
+                            <label>unit price</label>
+
+                            <input class="form-control form-control-lg" placeholder="Unit Price" name="unitPrice"
+                                #unitPrice="ngModel" [(ngModel)]="service.formData.unitPrice" required
+                                [class.invalid]=" unitPrice.invalid &&  unitPrice.touched">
+                        </div>
+                        <div class="col-12" style="margin-top: 20px;">
+                            <label>remarks</label>
+
+                            <input class="form-control form-control-lg" placeholder="AnyRemarks" name="remarks"
+                                #remarks="ngModel" [(ngModel)]="service.formData.remarks" required
+                                [class.invalid]="remarks.invalid && remarks.touched">
+                        </div>
+
+                        <div class="col-12" style="margin-top: 20px;" align="center">
+                            <button class="btn btn-info btn-lg btn-block" data-bs-dismiss="modal"
+                                type="submit">update</button>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+   -->
+        </div>
+    </div>
+</div>

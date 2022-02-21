@@ -1,0 +1,31 @@
+
+
+<div class="jumbutron py-3">
+   <h1 class="display-4 text-center" style="font-size:50px;"> search list</h1>
+</div><br><br>
+
+<div class="container" *ngIf ="loading">
+    <p class="searchmessage" style="text-align: center;">Searching....</p> 
+    <div class="ids-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
+
+<div class="container" *ngIf ="errormessage">
+     <h2>Error</h2>
+     <p class="error">{{errormessage}}</p>
+</div>
+
+ <div class="container" *ngIf ="searchresult">
+   <div class="row">
+     <ng-container *ngFor="let pd of searchlist">
+         <div class="card col-md-3">
+          
+          <h1 class="card-title" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{pd.productCode}}</h1><br>
+          <h4><b>{{pd.category}}</b></h4>
+          <p class="card-text" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{pd.description}}</p>
+          <h3 class="card-title"><strong>${{pd.unitPrice}}</strong></h3>
+        <button type="button" class="btn btn-primary">Add To Cart</button>
+      </div>
+   </ng-container>
+   </div>
+
+ </div>

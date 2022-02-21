@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <app-navigation></app-navigation>
+    <ng-container *ngIf="cartproduct.length ===0">
+        <div class="container">
+            <div class="card">
+                <h5 class="card-title"> My Cart </h5>
+            </div>
+            <div class="center">
+                <img src="assets/cart.jpeg" alt="">
+                <h4><b>your cart is empaty</b></h4>
+                <h6>Add item to it now</h6>
+                <button (click)="gotoDash()" class=" btn btn-primary"> Shop now</button>
+            </div>
+        </div>
+
+    </ng-container>
+
+
+    <ng-container *ngIf="cartproduct.length !=0">
+        <div class="container">
+            <div class="cart-product">
+                <table class="table table-resonsive">
+                    <thead>
+                        <tr>
+                            <th>Sr.no</th>
+                            <th>Product Code</th>
+
+                            <th>Description</th>
+                            <th>Unit Price</th>
+                            <th>Remarks</th>
+                            <th>Quantity</th>
+
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pd of cartproduct ;let i= index">
+                            <td>{{i+1}}</td>
+                            <td>{{pd.productCode}}</td>
+
+                            <td>{{pd.description}}</td>
+                            <td>{{pd.unitPrice}}</td>
+                            <td>{{pd.remarks}}</td>
+                            <td>{{pd.quantity}}</td>
+
+                            <td><button (click)="delet(pd)" type="button">
+                                    <mat-icon style="color: red;">delete</mat-icon>
+                                </button></td>
+                        </tr>
+                        <tr>
+                            <td style="float: right;"><strong>Total Amount :{{grandtotal}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <button type="button" (click)="removeall()" class=" col col-md-3 btn btn-danger">Remove All</button>
+                    <button type="button"  (click)="gotoDash()" class=" col col-md-3 btn btn-warning">Shop Now</button>
+                    <button type="button" class=" col col-md-3 btn btn-info" (click)="orderFun()">Order now</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

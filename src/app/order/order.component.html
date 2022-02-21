@@ -1,0 +1,71 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Order Number</th>
+        <th scope="col">Order Date</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orderDetails">
+        <td>{{item.orderNumber}}</td>
+        <td>{{item.orderDate}}</td>
+        <td>{{item.orderAmount}}</td>
+        <td>
+          <button class="btn btn-info" type="button" (click)="viewFun(item)" class="btn btn-primary"
+            data-bs-toggle="modal" data-bs-target="#myModal1">View</button>
+          <button class="btn btn-danger mx-3" data-bs-toggle="modal" data-bs-target="#myModal">Delete</button>
+        </td>
+        <!-- Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+  
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Confirm order deletion? </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                  (click)="deletFun(item.orderNumber)">Yes</button>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+  <!-- The Modal -->
+  <div class="modal" id="myModal1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body" *ngIf="viewOderDetails">
+          <div>LoginId : {{viewOderDetails.loginId}}</div>
+          <div>orderAmount : {{viewOderDetails.orderAmount}}</div>
+          <div>Order Date : {{viewOderDetails.orderDate}}</div>
+          <div>Order Number : {{viewOderDetails.orderNumber}}</div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+</div>
